@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapi-deployment
+  namespace: sohit-k8s
+  labels:
+    app: webapi
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: webapi
+  template:
+    metadata:
+      labels:
+        app: webapi
+    spec:
+      containers:
+      - name: webapi
+        image: sohit1991/orderapi:latest
+        ports:
+        - containerPort: 80
+        env: 
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mssql-secrets
+              key: DB_PASSWORD
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mssql-secrets
+              key: DB_USERNAME
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: DB_NAME
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: DB_PORT
+        - name: SERVER
+          value: mssql-statefulset  
+        volumeMounts:
+        - mountPath: /mnt
+          name: storage
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: mssql-mdf-volume   
+
+--- #api service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapi-service
+  namespace: sohit-k8s
+spec:
+  type: LoadBalancer
+  selector: 
+    app: webapi
+  ports: 
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+

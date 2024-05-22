@@ -5,6 +5,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string server, port, databaseName, dbUserName, dbPassword, connString = string.Empty;
+
+server = Environment.GetEnvironmentVariable("SERVER") ?? string.Empty;
+port = Environment.GetEnvironmentVariable("DB_PORT") ?? string.Empty;
+databaseName = Environment.GetEnvironmentVariable("DB_NAME") ?? string.Empty;
+dbUserName = Environment.GetEnvironmentVariable("DB_USERNAME") ?? string.Empty;
+dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? string.Empty;
+connString = $"Server={server},{port};Database={databaseName};User Id={dbUserName};password={dbPassword};";
+Console.WriteLine($"Connection string created {connString}");
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -12,10 +22,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IOrderRepo, OrderRepo>();
 
-var conString = "data source=SOHIT\\SQLEXPRESS;initial catalog=OrderDb;persist security info=True;Integrated Security=SSPI;TrustServerCertificate=true";
+//var connString = "data source=SOHIT\\SQLEXPRESS;initial catalog=OrderDb;persist security info=True;Integrated Security=SSPI;TrustServerCertificate=true";
 builder.Services.AddDbContext<OrderContext>(options =>
 {
-    options.UseSqlServer(conString);
+    options.UseSqlServer(connString);
 });
 
 
@@ -29,9 +39,9 @@ try
     {
         var services = scope.ServiceProvider;
         var context = services.GetRequiredService<OrderContext>();
-        var pendingMigration = context.Database.GetPendingMigrations();
-        if (pendingMigration.Count() > 0)
-            context.Database.Migrate();
+        //var pendingMigration = context.Database.GetPendingMigrations();
+        //if (pendingMigration.Count() > 0)
+        context.Database.Migrate();
     }
 }
 catch (Exception ex)

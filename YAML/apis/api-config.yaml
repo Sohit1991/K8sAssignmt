@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: sohit-k8s
+data:
+  DB_NAME: OrderDb
+  DB_PORT: "1433"
