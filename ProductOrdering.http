@@ -1,6 +1,0 @@
-@ProductOrdering_HostAddress = http://localhost:5105
-
-GET {{ProductOrdering_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

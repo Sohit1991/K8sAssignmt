@@ -11,8 +11,8 @@ using ProductOrdering.Data;
 namespace ProductOrdering.Migrations
 {
     [DbContext(typeof(OrderContext))]
-    [Migration("20240521053815_initial-mig")]
-    partial class initialmig
+    [Migration("20240522121805_initialMig")]
+    partial class initialMig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

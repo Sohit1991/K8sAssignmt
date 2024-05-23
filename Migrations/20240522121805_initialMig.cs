@@ -5,7 +5,7 @@
 namespace ProductOrdering.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmig : Migration
+    public partial class initialMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

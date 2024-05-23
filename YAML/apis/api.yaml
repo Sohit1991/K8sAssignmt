@@ -47,7 +47,7 @@ spec:
               name: api-config
               key: DB_PORT
         - name: SERVER
-          value: mssql-statefulset  
+          value: mssql-service  
         volumeMounts:
         - mountPath: /mnt
           name: storage

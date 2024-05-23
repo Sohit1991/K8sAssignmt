@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.ObjectPool;
 using ProductOrdering.Data;
 using ProductOrdering.Entity;
+using System.Text;
 
 namespace ProductOrdering.Controllers
 {
@@ -48,5 +50,10 @@ namespace ProductOrdering.Controllers
             await _orderRepo.DeleteOrder(id);
             return NoContent();
         }
+        //[HttpGet]
+        //public string Test()
+        //{
+        //    return "success";
+        //}
     }
 }
