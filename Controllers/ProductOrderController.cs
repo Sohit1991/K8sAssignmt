@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ProductOrdering.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/")]
     [ApiController]
     public class ProductOrderController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace ProductOrdering.Controllers
         {
             this._orderRepo = orderRepo;
         }
-        [HttpGet]
+        [HttpGet("productOrder")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
         {
             var orders = await _orderRepo.GetAllOrders();
@@ -26,7 +26,7 @@ namespace ProductOrdering.Controllers
             return Ok(orders);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("productOrder/{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
             var order = await _orderRepo.GetOrder(id);
@@ -35,7 +35,7 @@ namespace ProductOrdering.Controllers
             return Ok(order);
         }
 
-        [HttpPost]
+        [HttpPost("productOrder")]
         public async Task<ActionResult<Order>> CreateOrder(Order orderRequest)
         {
             var order = await _orderRepo.CreateOrder(orderRequest);
@@ -44,7 +44,7 @@ namespace ProductOrdering.Controllers
             return CreatedAtAction(nameof(GetOrder), new { id = orderRequest.Id }, order);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("productOrder/{id}")]
         public async Task<ActionResult> DeleteOrder(int id)
         {
             await _orderRepo.DeleteOrder(id);

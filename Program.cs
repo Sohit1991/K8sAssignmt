@@ -25,7 +25,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IOrderRepo, OrderRepo>();
 
-//connString = "data source=SOHIT\\SQLEXPRESS;initial catalog=OrderDb;persist security info=True;Integrated Security=SSPI;TrustServerCertificate=true";
 builder.Services.AddDbContext<OrderContext>(options =>
 {
     options.UseSqlServer(connString);
@@ -54,8 +53,6 @@ try
                 Console.WriteLine("Seed data successfully");
                 //logger.LogInformation($"Ordering Database Seeded: {typeof(OrderContext).Name}");
             }
-            //if (pendingMigration.Count() > 0)
-            //context.Database.Migrate();
         }
     }
 }
@@ -65,12 +62,9 @@ catch (Exception ex)
     Console.WriteLine(ex);
 }
 
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
 app.UseSwagger();
 app.UseSwaggerUI();
-//}
+
 
 app.UseAuthorization();
 
