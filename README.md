@@ -1,5 +1,6 @@
 1.) YAML Files in folder "YAML" in solution structure 
-2.) Docker image Name = sohit1991/orderapi:latest
+
+2.) Docker image Name = **sohit1991/orderapi:latest**
 
 **3.) Docker hub image url** = https://hub.docker.com/r/sohit1991/orderapi
 
