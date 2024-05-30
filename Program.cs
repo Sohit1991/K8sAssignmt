@@ -19,7 +19,7 @@ connString = Environment.GetEnvironmentVariable("CONN_STR") ?? string.Empty;
 //
 connString=string.Format(connString, server, databaseName, dbUserName, dbPassword);
 
-Console.WriteLine($"Connection string created {connString}");
+Console.WriteLine($"Connection string  {connString}");
 
 // Add services to the container.
 
