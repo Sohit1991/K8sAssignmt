@@ -14,5 +14,5 @@
 6.) YAML Files in folder "YAML" in solution structure and Docker file is also in code repository 
 
 
-7.) During the video, copied some text from Notepad like for load-generator and POST API request
+7.) During the video, copied some text from Notepad like for load-generator and POST API request which is not recorded
 
