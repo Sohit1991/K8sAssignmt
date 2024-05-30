@@ -5,5 +5,5 @@ metadata:
 data:
   DB_NAME: OrderDb
   DB_PORT: "1433"
-
+  CONN_STR: "Server={0}.default.svc.cluster.local;Database={1};User Id={2};password={3};TrustServerCertificate=true"
 

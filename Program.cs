@@ -14,8 +14,11 @@ port = Environment.GetEnvironmentVariable("DB_PORT") ?? string.Empty;
 databaseName = Environment.GetEnvironmentVariable("DB_NAME") ?? string.Empty;
 dbUserName = Environment.GetEnvironmentVariable("DB_USERNAME") ?? string.Empty;
 dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? string.Empty;
-//connString = $"Server={server},{port};Database={databaseName};User Id={dbUserName};password={dbPassword};";
-connString = $"Server=mssql-service.default.svc.cluster.local;Database={databaseName};User Id={dbUserName};password={dbPassword};TrustServerCertificate=true";
+connString = Environment.GetEnvironmentVariable("CONN_STR") ?? string.Empty;
+
+//
+connString=string.Format(connString, server, databaseName, dbUserName, dbPassword);
+
 Console.WriteLine($"Connection string created {connString}");
 
 // Add services to the container.

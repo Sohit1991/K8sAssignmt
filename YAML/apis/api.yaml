@@ -10,8 +10,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
+      maxUnavailable: 0
+      maxSurge: 5
   template:
     metadata:
       labels:
@@ -19,14 +19,14 @@ spec:
     spec:
       containers:
       - name: webapi
-        image: sohit1991/orderapi:latest
+        image: sohit1991/orderapi:v7
         ports:
         - containerPort: 8080
         resources:
           requests:
-            cpu: "400m"
+            cpu: "300m"
           limits:
-            cpu: "500m"
+            cpu: "400m"
         env: 
         - name: DB_PASSWORD
           valueFrom:
@@ -43,6 +43,11 @@ spec:
             configMapKeyRef:
               name: api-config
               key: DB_NAME
+        - name: CONN_STR
+          valueFrom:
+            configMapKeyRef:
+              name: api-config
+              key: CONN_STR
         - name: DB_PORT
           valueFrom:
             configMapKeyRef:
