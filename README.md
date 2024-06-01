@@ -4,7 +4,7 @@
 
 3.) Docker hub Db Image url = **https://hub.docker.com/_/microsoft-mssql-server (mcr.microsoft.com/mssql/server:2017)**
 
-4.) API Access Url= **http://35.192.162.173/swagger/index.html**
+4.) API Access Url= **http://35.192.162.173/swagger/index.html** **(GET http://35.192.162.173/api/v1/productOrder )**
 
 5.) Video Url = **https://drive.google.com/file/d/1BRhjfjClcdLO86moBZtKYbCkUoth74d3/view?usp=drive_link**
 
